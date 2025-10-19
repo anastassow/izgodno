@@ -11,6 +11,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This entity represend all the information for the billa products
+ */
+
 @Entity
 @Table(name = "Billa")
 @Data
@@ -38,6 +42,5 @@ public class Billa {
     @Column(nullable = false)
     private Double retail_price;
 
-    @Column(nullable = false)
-    private Double promotion_price = 0.0;
+    private Double promotion_price;
 }
