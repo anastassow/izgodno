@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material"
 import SectionWrapper from "../SectionWrapper/SectionWrapper"
 import Image from "next/image"
+import SearchForm from "../SearchForm/SearchForm"
 
 const Hero = () => {
     return (
@@ -34,7 +35,9 @@ const Hero = () => {
             }}>
                 <Stack sx={{ textAlign: "center", position: "relative", zIndex: 1, color: "primary.contrastText" }}>
                     <Typography variant="h1" fontWeight={600} mb={3}>Сравни цени, спести пари</Typography>
-                    <Typography variant="body1" mb={4} fontSize={24}>Открийте най-изгодните цени на хранителни продукти от различни магазини в България</Typography>
+                    <Typography component={"span"} variant="body1" mb={4} fontSize={24}>Открийте най-изгодните цени на хранителни продукти от различни магазини в България</Typography>
+
+                    <SearchForm />
                 </Stack>
             </SectionWrapper>
         </Box>

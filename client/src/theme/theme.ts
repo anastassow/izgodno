@@ -3,6 +3,9 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   cssVariables: true,
+  shape: {
+    borderRadius: "16px"
+  },
   palette: {
     bgcolor: {
       main: 'hsl(0 0% 98%)'
@@ -28,6 +31,19 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+        }
+      }
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          fontSize: "1rem"
+        },
+        containedPrimary: {
+          "&:hover": {
+            backgroundColor: "hsla(158, 78%, 60%, 1.00)"
+          }
         }
       }
     }
