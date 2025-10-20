@@ -5,7 +5,7 @@ import { ShoppingBasket } from 'lucide-react'
 
 const Header = () => {
     return (
-        <AppBar position="sticky" elevation={0} sx={{ bgcolor: "primary.contrastText", color: "primary.main", px: { sm: 2, md: 4, lg: 8 } }}>
+        <AppBar position="sticky" elevation={0} sx={{ bgcolor: "primary.contrastText", color: "primary.main", px: { sm: 2, md: 4 } }}>
             <Toolbar>
                 <Stack direction={"row"} gap={1} alignItems={"center"}>
                     <Box sx={{ bgcolor: "primary.main", color: "primary.contrastText", borderRadius: 1, p: 1, width: "2.5rem", height: "2.5rem" }}>
@@ -14,7 +14,7 @@ const Header = () => {
                     <Typography variant="body1" fontSize={20} sx={{ userSelect: "none" }}>Izgodno</Typography>
                 </Stack>
 
-                <Stack flex={1} justifyContent={"end"} direction={"row"} gap={2}>
+                <Stack flex={1} justifyContent={"end"} direction={"row"} gap={4}>
                     <NavLink label="Начало" route="/#hero" />
                     <NavLink label="За Нас" route="/#about" />
                 </Stack>
