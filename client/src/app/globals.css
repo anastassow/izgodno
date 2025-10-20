@@ -24,86 +24,16 @@ select:-webkit-autofill:focus {
 
 
 /* LOADER */
-.title {
-  margin: 0;
-  padding: 0;
-  /* font-family: 'Arial Narrow', sans-serif; */
-  font-family: var(--font-inter);
-  font-weight: 600;
-  font-size: 3.2rem;
-  color: var(--mui-palette-primary-main);
-  transform: translateY(-50%);
-  position: relative; /* important for child top positioning */
-  transform-style: preserve-3d;
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: 
+    radial-gradient(farthest-side, var(--mui-palette-primary-main) 94%,#0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%, var(--mui-palette-primary-main));
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  animation: l13 1s infinite linear;
 }
-
-.letter {
-  position: relative;  /* needed for top animation */
-  display: inline-block;
-  /* text-transform: uppercase;   */
-  opacity: 0;
-  transform: rotateX(-90deg);
-  transform-style: preserve-3d;
-  transform-origin: top;
-}
-
-
-.let1 {
-  animation: drop 2.4s ease-in-out infinite;
-  animation-delay: 1.2s;
-}
-
-.let2 {
-  animation: drop 2.4s ease-in-out infinite;
-  animation-delay: 1.3s;
-}
-
-.let3 {
-  animation: drop 2.4s ease-in-out infinite;
-  animation-delay: 1.4s;
-}
-
-.let4 {
-  animation: drop 2.4s ease-in-out infinite;
-  animation-delay: 1.5s;
-
-}
-
-.let5 {
-  animation: drop 2.4s ease-in-out infinite;
-  animation-delay: 1.6s;
-}
-
-.let6 {
-  animation: drop 2.4s ease-in-out infinite;
-  animation-delay: 1.7s;
-}
-
-.let7 {
-  animation: drop 2.4s ease-in-out infinite;
-  animation-delay: 1.8s;
-}
-
-@keyframes drop {
-    10% {
-        opacity: 0.5;
-        top: -3.78em
-    }
-    20% {
-        opacity: 1;
-        top: 0;
-        transform: rotateX(-360deg);
-    }
-    80% {
-        opacity: 1;
-        top: 0;
-        transform: rotateX(-360deg);
-    }
-    90% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 0;
-        top: 3.16em
-    }
+@keyframes l13{ 
+  100%{transform: rotate(1turn)}
 }
