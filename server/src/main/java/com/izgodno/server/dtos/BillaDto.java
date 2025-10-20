@@ -13,4 +13,5 @@ public class BillaDto {
     private String product_name;
     private Double promotion_price;
     private Double retail_price;
+    private Integer discount_percentage;
 }

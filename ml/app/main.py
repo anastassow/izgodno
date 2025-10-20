@@ -1,53 +1,73 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import List, Dict
 import openai
 import os
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
-app = FastAPI() 
+app = FastAPI()
 
 openai.api_key = os.getenv("OPENAPI_KEY")
 
-class Item(BaseModel):
-    id: str
-    name: str
+class Product(BaseModel):
+    id: int
+    product_name: str
+
 
 class RequestBody(BaseModel):
+    total: Dict[str, int]
+    page: int
     keyword: str
-    items: list[Item]
+    items: Dict[str, List[Product]]
+    page_size: int
+
 
 @app.post("/filter/")
 async def filter_items(body: RequestBody):
     keyword = body.keyword
-    items = body.items
+    companies_items = body.items
 
-    item_list = [item.name for item in items]
-    prompt = f"""
+    result = {}
+
+    for company, items in companies_items.items():
+        product_names = [item.product_name for item in items]
+
+        prompt = f"""
 The keyword is "{keyword}".
-You are given a list of items:
-{item_list}
+You are given a list of product names:
+{product_names}
 
-Return all items that are actual types or kinds of {keyword} (food), not tools, appliances, or things used for {keyword}.
-Answer ONLY with a JSON array of strings, like ["bread white", "bread brown"].
-Do not include unrelated items.
+Return only the items that are actual types or kinds of {keyword} (e.g., food),
+NOT tools, appliances, or unrelated products.
+Answer ONLY with a JSON array of strings (product names).
+For example: ["Хляб Добруджа", "Бял хляб с квас"]
 """
 
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0
-    )
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0
+            )
+            result_text = response.choices[0].message.content.strip()
+            filtered_names = json.loads(result_text)
+        except Exception:
+            filtered_names = []
 
-    result_text = response.choices[0].message.content.strip()
+        filtered_items = [
+            {"id": item.id, "product_name": item.product_name}
+            for item in items
+            if item.product_name in filtered_names
+        ]
 
-    import json
-    try:
-        filtered_names = json.loads(result_text)
-    except Exception:
-        filtered_names = []
+        result[company] = filtered_items
 
-    filtered_items = [item for item in items if item.name in filtered_names]
-
-    return {"keyword": keyword, "filtered": filtered_items}
+    return {
+        "keyword": keyword,
+        "page": body.page,
+        "page_size": body.page_size,
+        "items": result
+    }
