@@ -58,9 +58,6 @@ export async function generateMetadata(
 const Page = async ({ searchParams }: SearchParams) => {
     const { query, city, page } = await searchParams
 
-    console.log(query)
-    console.log(city)
-    console.log(page)
     const cityCode = Number(city)
     const pageNumber = Number(page)
 
