@@ -16,9 +16,9 @@ const SearchForm = ({ search, city }: { search: string | undefined, city: string
                         },
                     }}
                 />
-                <FormControl sx={{ width: { md: "10rem" } }}>
-                    <InputLabel>Град</InputLabel>
-                    <Select name="city" defaultValue={city || ""}>
+                <FormControl variant="outlined" sx={{ width: { md: "10rem" } }}>
+                    <InputLabel id="cityLabel">Град</InputLabel>
+                    <Select labelId="cityLabel" label="Град" name="city" defaultValue={city || ""}>
                         <MenuItem value="София">София</MenuItem>
                         <MenuItem value="Бургас">Бургас</MenuItem>
                     </Select>

@@ -28,18 +28,21 @@ const ProductCard = ({ product }: { product: Product }) => {
                 <Stack alignItems={"start"} gap={2} sx={{ pb: 2, mb: 3, borderBottom: "dashed 2px", borderColor: "border.main" }}>
                     <Stack direction={{ sm: "row" }} gap={1} alignItems={"start"} justifyContent={"space-between"} sx={{ width: "100%" }}>
                         <Typography variant="body1" mb={1} fontSize={18} color="inherit" fontWeight={600}>{product.name}</Typography>
-                        <Chip
-                            icon={<TrendingDownIcon sx={{ width: "1.2rem", height: "1.2rem" }} />}
-                            variant="filled"
-                            color="accent"
-                            label={`-${product.discount}%`}
-                            sx={{
-                                bgcolor: "accent.main",
-                                color: "accent.contrastText", 
-                                fontWeight: 600, 
-                                px: 1
-                            }}
-                        />
+                        {
+                            
+                            <Chip
+                                icon={<TrendingDownIcon sx={{ width: "1.2rem", height: "1.2rem" }} />}
+                                variant="filled"
+                                color="accent"
+                                label={`-${product.discount}%`}
+                                sx={{
+                                    bgcolor: "accent.main",
+                                    color: "accent.contrastText", 
+                                    fontWeight: 600, 
+                                    px: 1
+                                }}
+                            />
+                        }
                     </Stack>
                     
                     <Chip icon={<StorefrontOutlinedIcon sx={{ width: "1.2rem", height: "1.2rem" }} />} variant="outlined" color="secondary" label={product.store} sx={{ p: 1 }}/>
