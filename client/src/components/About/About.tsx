@@ -18,7 +18,7 @@ const About = () => {
                 <Typography variant="h2" mb={1} fontWeight={600} color="title">За Izgodno</Typography>
                 <Typography variant="body1" mb={8} fontSize={20} color="neutral">Izgodno.org е платформа, която обединява цените на хранителни продукти от различни магазини в България. Нашата мисия е да помогнем на потребителите да вземат информирани решения и да спестят пари при ежедневните си покупки.</Typography>
 
-                <Grid mb={8} container spacing={4}>
+                <Grid mb={8} container spacing={4} px={{ sm: 6, md: 0 }}>
                     <AboutCard
                         title="Лесно Търсене"
                         text="Намерете любимите си продукти с едно търсене в нашата обширна база данни"

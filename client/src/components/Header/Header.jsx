@@ -3,7 +3,7 @@ import NavLink from "../NavLink/NavLink"
 
 const Header = () => {
     return (
-        <AppBar position="sticky" elevation={0} sx={{ bgcolor: "primary.contrastText", color: "primary.main", px: 8 }}>
+        <AppBar position="sticky" elevation={0} sx={{ bgcolor: "primary.contrastText", color: "primary.main", px: { sm: 2, md: 4, lg: 8 } }}>
             <Toolbar>
                 <Typography variant="h5">LOGO</Typography>
 

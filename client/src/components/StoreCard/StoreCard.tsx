@@ -85,7 +85,7 @@ const StoreCard = ({ store }: { store: "kaufland" | "lidl" | "billa" }) => {
         <Card sx={{
             borderTop: "solid 4px",
             borderColor: "primary.main",
-            p: 4
+            p: { xs: 2, sm: 4 }
         }}>
             <Stack gap={3} mb={4} alignItems="start" direction={"row"} sx={{ borderBottom: "dashed 2px", borderColor: "border.main", pb: 4 }}>
                 <Stack sx={{ bgcolor: "primary.main", width: "4rem", height: "4rem", p: 1.5, borderRadius: 1 }}>
@@ -98,7 +98,7 @@ const StoreCard = ({ store }: { store: "kaufland" | "lidl" | "billa" }) => {
                 </Stack>
             </Stack>
 
-            <Grid container spacing={6}>
+            <Grid container spacing={{ xs: 4, lg: 6 }}>
                 {
                     products[store].map((product, i) => (
                         <ProductCard product={product} key={i} />

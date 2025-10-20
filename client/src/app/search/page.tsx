@@ -19,7 +19,7 @@ const Page = async ({ searchParams }: { searchParams: { [key: string]: string | 
             <Box sx={{
                 position: "relative"
             }}>
-                <Link href={'/'}><Button startIcon={<ArrowBackIcon />} sx={{ position: "absolute", zIndex: 1, top: "2.4rem", left: "3.2rem", color: "primary.contrastText" }}>Към началото</Button></Link>
+                <Button startIcon={<ArrowBackIcon />} sx={{ position: "absolute", zIndex: 1, top: "2.4rem", left: { xs: "1.2rem", sm: "1.2rem", md: "3.2rem" }, color: "primary.contrastText" }}><Link href={'/'} style={{ textDecoration: "none", color: "inherit" }}>Към началото</Link></Button>
 
                 <Image
                     src={"/images/hero-groceries.webp"}
@@ -27,7 +27,7 @@ const Page = async ({ searchParams }: { searchParams: { [key: string]: string | 
                     fill
                     sizes="(min-width: 0) 100vw"
                     priority
-                    style={{ objectFit: "cover", objectPosition: "top left" }}
+                    style={{ objectFit: "cover", objectPosition: "top center" }}
                 />
 
                 <Box sx={{
@@ -59,7 +59,7 @@ const Page = async ({ searchParams }: { searchParams: { [key: string]: string | 
                 disableGutters: true,
                 sx: {
                     py: 12,
-                    px: 8
+                    px: { xs: 2, md: 8 }
                 }
             }}>
                 {
