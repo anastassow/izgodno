@@ -29,7 +29,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                     <Stack direction={{ sm: "row" }} gap={1} alignItems={"start"} justifyContent={"space-between"} sx={{ width: "100%" }}>
                         <Typography variant="body1" mb={1} fontSize={18} color="inherit" fontWeight={600}>{product.name}</Typography>
                         {
-                            
+                            product.promotionPrice > 0 &&
                             <Chip
                                 icon={<TrendingDownIcon sx={{ width: "1.2rem", height: "1.2rem" }} />}
                                 variant="filled"

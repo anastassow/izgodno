@@ -11,6 +11,12 @@ import Footer from "@/components/Footer/Footer";
 export const metadata: Metadata = {
   title: "Izgodno | Сравни цените в супермаркетите",
   description: "Сравнявай цени на хранителни продукти от различни супермаркети на едно място. Намери най-добрите оферти, използвай AI филтри за търсене и спести пари с ежедневно обновявани данни.",
+  icons: {
+    icon: [
+      { url: "/icons/icon-light.png", media: "(prefers-color-scheme: light)" },
+      { url: "/icons/icon-dark.png", media: "(prefers-color-scheme: dark)" },
+    ]
+  },
   openGraph: {
     title: "Izgodno - Сравни цените в супермаркетите",
     description: "Виж и сравни хранителни продукти от различни супермаркети на едно място. Данните се обновяват ежедневно, а интелигентното търсене с изкуствен интелект ти помага да намериш най-добрите оферти.",
