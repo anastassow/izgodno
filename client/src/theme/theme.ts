@@ -7,6 +7,7 @@ const theme = createTheme({
     borderRadius: "16px"
   },
   typography: {
+    fontFamily: "var(--font-inter)",
     h1: {
       fontSize: "4.5rem"
     }
