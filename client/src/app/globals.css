@@ -6,6 +6,7 @@
 
 html {
     scroll-behavior: smooth;
+    color: var(--mui-palette-title-main);
 }
 
 input:-webkit-autofill,
