@@ -36,7 +36,7 @@ const About = () => {
                     />
                 </Grid>
 
-                <Typography variant="body1" color="neutral" fontSize={20}>Данните се актуализират редовно от <Link href={'https://kolkostruva.bg/opendata'} target="blank" style={{ textDecoration: "none" }}><Typography component="span" color="primary" fontSize={20}>KolkoStruva.bg</Typography></Link></Typography>
+                <Typography variant="body1" color="neutral" fontSize={20}>Данните се актуализират редовно от <Link href={'https://kolkostruva.bg/opendata'} target="blank" style={{ textDecoration: "none" }}><Typography component="span" color="accent" fontSize={20}>KolkoStruva.bg</Typography></Link></Typography>
             </Stack>
         </SectionWrapper>
     )
