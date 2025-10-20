@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
 
 import org.apache.http.client.utils.URIBuilder;
 import org.jsoup.Jsoup;
@@ -20,14 +21,14 @@ public class CsvUrlExtractService {
     @Value("${kolkostruva.url}")
     String url;
 
-    public String csvUrl() {
+    public String csvUrl(LocalDate date_now, Integer account) {
 
         HttpClient client = HttpClient.newHttpClient();
 
         try {
             URI uri = new URIBuilder(url)
-                .addParameter("date", "2025-10-20")
-                .addParameter("account", "2")
+                .addParameter("date", date_now.toString())
+                .addParameter("account", account.toString())
                 .build();
 
             HttpRequest request = HttpRequest.newBuilder()
@@ -42,12 +43,12 @@ public class CsvUrlExtractService {
 
             Element link = doc.selectFirst("a[data-type=csv]");
             String csvPath = link.attr("href");
-            System.out.println(csvPath);
+            return csvPath;
         } catch (Exception e) {
-            System.out.println("There is an error with the uri");
+            System.out.println("There is an error with the uri"); // custom exeption later
+            return null;
         }
 
-        return "";
     }
 
 }
