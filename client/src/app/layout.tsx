@@ -13,9 +13,16 @@ export const metadata: Metadata = {
   description: "Сравнявай цени на хранителни продукти от различни супермаркети на едно място. Намери най-добрите оферти, използвай AI филтри за търсене и спести пари с ежедневно обновявани данни.",
   icons: {
     icon: [
-      { url: "/icons/icon-light.png", media: "(prefers-color-scheme: light)" },
-      { url: "/icons/icon-dark.png", media: "(prefers-color-scheme: dark)" },
-    ]
+        {
+            media: "(prefers-color-scheme: light)",
+            url: "/meta/icon-light.png",
+        },
+        {
+            media: "(prefers-color-scheme: dark)",
+            url: "/meta/icon-dark.png",
+        }
+    ],
+    shortcut: "/meta/icon-light.png"
   },
   openGraph: {
     title: "Izgodno - Сравни цените в супермаркетите",
