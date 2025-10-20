@@ -1,0 +1,52 @@
+# ---------------------
+# Version control files
+# ---------------------
+.git
+.gitignore
+
+# ---------------------
+# Python cache files
+# ---------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ---------------------
+# Virtual environments
+# ---------------------
+venv/
+.env/
+.venv/
+
+# ---------------------
+# Local environment variables
+# ---------------------
+.env
+.env.local
+.env.development
+.env.test
+
+# ---------------------
+# Development artifacts
+# ---------------------
+*.db
+*.sqlite3
+*.log
+.DS_Store
+.idea/
+.vscode/
+__debug_bin__/
+
+# ---------------------
+# Tests and docs (if not needed in production)
+# ---------------------
+tests/
+docs/
+README.md
+
+# ---------------------
+# Other junk
+# ---------------------
+*.bak
+*.swp

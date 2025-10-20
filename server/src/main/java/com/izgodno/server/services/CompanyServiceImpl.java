@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -24,6 +25,7 @@ import com.izgodno.server.repositories.BillaRepository;
 import com.izgodno.server.repositories.KauflandRepository;
 import com.izgodno.server.repositories.LidlRepository;
 
+
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
@@ -35,6 +37,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private LidlRepository lidlRepository;
+
+    @Value("${fastapi.microcervice.url}")
+    private String microserviceUrl;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
