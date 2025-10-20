@@ -8,22 +8,30 @@ const theme = createTheme({
   },
   palette: {
     bgcolor: {
-      main: 'hsl(0 0% 98%)'
+      main: '#EEEEEE'
     },
     primary: {
-      main: 'hsl(158 64% 52%)',
+      main: '#555879',
       contrastText: 'hsl(0 0% 100%)',
-      light: "#36d3991a"
+      light: "#a991701a"
     },
     secondary: {
-      main: 'hsl(217 91% 60%)',
-      contrastText: "hsl(0 0% 100%)"
+      main: '#98A1BC',
+      contrastText: "hsl(0 0% 100%)",
+      light: '#6c7f931a'
     },
     neutral: {
       main: "hsl(220 9% 46%)"
     },
     title: {
       main: "hsl(220 13% 13%)"
+    },
+    border: {
+      main: "hsl(214 32% 91%)"
+    },
+    accent: {
+      main: "#901E3E",
+      contrastText: "hsl(0 0% 100%)"
     }
   },
   components: {
@@ -45,6 +53,13 @@ const theme = createTheme({
             backgroundColor: "hsla(158, 78%, 60%, 1.00)"
           }
         }
+      }
+    },
+    MuiChip: {
+      styleOverrides: {
+        outlinedSecondary: ({ theme }) => ({
+          background: theme.palette.secondary.light
+        })
       }
     }
   }
