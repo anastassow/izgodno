@@ -1,7 +1,8 @@
 package com.izgodno.server.services;
 
-import com.izgodno.server.dtos.SearchResponse;
+
+import com.izgodno.server.dtos.ProductsResponse;
 
 public interface CompanyService {
-    public SearchResponse searchProducts(String keyword, Integer cityCode);
+    public ProductsResponse searchProducts(String keyword, Integer cityCode, int page, int size);
 }

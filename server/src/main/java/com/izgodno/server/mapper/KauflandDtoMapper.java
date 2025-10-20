@@ -4,7 +4,7 @@ import com.izgodno.server.dtos.KauflandDto;
 import com.izgodno.server.entities.Kaufland;
 
 public class KauflandDtoMapper {
-    public static KauflandDto mapToBillaDto(Kaufland kaufland) {
+    public static KauflandDto mapToKauflandDto(Kaufland kaufland) {
         double dis_p = (kaufland.getRetail_price() - kaufland.getPromotion_price()) * 100 / kaufland.getRetail_price();
 
         return new KauflandDto(

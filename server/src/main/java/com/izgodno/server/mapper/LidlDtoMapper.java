@@ -3,7 +3,7 @@ import com.izgodno.server.dtos.LidlDto;
 import com.izgodno.server.entities.Lidl;
 
 public class LidlDtoMapper {
-    public static LidlDto mapToBillaDto(Lidl lidl) {
+    public static LidlDto mapToLidlDto(Lidl lidl) {
         double dis_p = (lidl.getRetail_price() - lidl.getPromotion_price()) * 100 / lidl.getRetail_price();
         
         return new LidlDto(
