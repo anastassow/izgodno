@@ -12,16 +12,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * This entity represend all the information for the billa products
+ * This entity represend all the information for the Kaufland products
  */
 
 @Entity
-@Table(name = "Billa")
+@Table(name = "Kaufland")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Billa {
-
+public class Kaufland {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,11 +30,11 @@ public class Billa {
     private Integer city_code;
 
     @NotNull(message = "Place us required")
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String place;
 
     @NotNull(message = "Product name required")
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String product_name;
 
     @NotNull(message = "Retail price required")
