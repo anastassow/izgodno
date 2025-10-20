@@ -6,6 +6,11 @@ const theme = createTheme({
   shape: {
     borderRadius: "16px"
   },
+  typography: {
+    h1: {
+      fontSize: "4.5rem"
+    }
+  },
   palette: {
     bgcolor: {
       main: '#EEEEEE'
