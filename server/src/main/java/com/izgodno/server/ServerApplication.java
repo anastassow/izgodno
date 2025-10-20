@@ -25,7 +25,7 @@ public class ServerApplication implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
 		LocalDate date_now = LocalDate.now();
-		csvUrlExtractService.csvUrl(date_now, 1);
+		csvUrlExtractService.csvUrl(date_now, 2);
     }
 
 	// @Override

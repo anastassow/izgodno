@@ -11,9 +11,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-
+import org.springframework.stereotype.Service; 
 
 @Service
 public class CsvUrlExtractService {
@@ -21,6 +19,13 @@ public class CsvUrlExtractService {
     @Value("${kolkostruva.url}")
     String url;
 
+    /**
+     * Gets the uri for the csv
+     * 
+     * @param date_now
+     * @param account
+     * @return String representing the uri for the csv url based on date and account number (food company)
+     */
     public String csvUrl(LocalDate date_now, Integer account) {
 
         HttpClient client = HttpClient.newHttpClient();
