@@ -5,7 +5,7 @@ import SearchForm from "../SearchForm/SearchForm"
 
 const Hero = () => {
     return (
-        <Box sx={{ position: "relative" }}>
+        <Box sx={{ position: "relative", minHeight: "100vh" }} id="#hero">
             <Image
                 src={"/images/hero-groceries.webp"}
                 alt="Grocerie Shopping"
