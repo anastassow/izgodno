@@ -107,7 +107,7 @@ export const getSearchResults = async (search: string, city: number, page: numbe
     // const secondsTillRevalidate = getRevalidateTime(3)
     // console.log(`Revalidation: ${secondsTillRevalidate}`)
 
-    // const response = await fetch(`${process.env.SERVER_BASE_URL}/api/search?keyword=${search}&cityCode=${city}&page=${page}&size=3`, {
+    // const response = await fetch(`${process.env.SERVER_BASE_URL}/api/products/search?keyword=${search}&cityCode=${city}&page=${page}&size=3`, {
     //     headers: {
     //         'Content-Type': "application/json"
     //     },
@@ -115,6 +115,9 @@ export const getSearchResults = async (search: string, city: number, page: numbe
     //         revalidate: secondsTillRevalidate
     //     }
     // })
+
+    // // console.log("RESPONSE")
+    // // console.log(await response.json().catch(() => null))
 
     // const endTime = new Date()
     // console.log(`Getting search results took ${endTime.getTime() - startTime.getTime()}ms`)

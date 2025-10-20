@@ -145,7 +145,7 @@ const Page = async ({ searchParams }: SearchParams) => {
                             </Stack>
                         </Stack>
 
-                        <SearchPagination count={products.page_size} />
+                        <SearchPagination page={pageNumber} count={products.page_size} />
                     </Stack>
                 }
             </SectionWrapper>

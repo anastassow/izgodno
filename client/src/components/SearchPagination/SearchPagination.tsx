@@ -4,7 +4,7 @@ import { Pagination, PaginationItem } from "@mui/material"
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
-const SearchPagination = ({ count }: { count: number }) => {
+const SearchPagination = ({ count, page }: { count: number, page: number }) => {
     // const router = useRouter();
     const searchParams = useSearchParams()
     const pathName = usePathname()
@@ -19,16 +19,17 @@ const SearchPagination = ({ count }: { count: number }) => {
         <>
             <Pagination
                 onChange={handleChange}
+                page={page}
                 size="large"
                 sx={{ mx: "auto", display: count <= 1 ? "none" : "block" }}
                 count={count} 
                 color="primary"
                 renderItem={(item) => (
-                    <Link passHref href={`${pathName}?query=${searchParams.get("query")}&city=${searchParams.get("city")}&page=${item.page || 0}`}>
+                    <a href={`${pathName}?query=${searchParams.get("query")}&city=${searchParams.get("city")}&page=${item.page || 0}`}>
                         <PaginationItem
                             {...item}
                         />
-                    </Link>
+                    </a>
                 )} 
             />
         </>
