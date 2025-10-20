@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 app = FastAPI() 
 
 openai.api_key = os.getenv("OPENAPI_KEY")
