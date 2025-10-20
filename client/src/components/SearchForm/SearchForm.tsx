@@ -10,7 +10,7 @@ const SearchForm = ({ search, city }: { search: string | undefined, city: string
                     sx={{ flex: 1 }}
                     name="query"
                     defaultValue={search || ""}
-                    placeholder="Въведете име на продукт (например: мляко, хляб, чай)"
+                    placeholder="Въведете име на продукт"
                     slotProps={{
                         input: {
                             startAdornment: <SearchIcon sx={{ mr: 1 }} />,
