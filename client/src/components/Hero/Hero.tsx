@@ -37,7 +37,7 @@ const Hero = () => {
                     <Typography variant="h1" fontWeight={600} mb={3}>Сравни цени, спести пари</Typography>
                     <Typography component={"span"} variant="body1" mb={4} fontSize={24}>Открийте най-изгодните цени на хранителни продукти от различни магазини в България</Typography>
 
-                    <SearchForm />
+                    <SearchForm search="" city="София" />
                 </Stack>
             </SectionWrapper>
         </Box>
