@@ -11,6 +11,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This entity represend all the information for the Kaufland products
+ */
+
 @Entity
 @Table(name = "Kaufland")
 @Data

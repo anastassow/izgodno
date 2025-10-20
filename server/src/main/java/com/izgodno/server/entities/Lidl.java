@@ -11,6 +11,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This entity represend all the information for the Lidl products
+ */
+
 @Entity
 @Table(name = "Lidl")
 @Data
