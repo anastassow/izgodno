@@ -1,12 +1,16 @@
 import SearchForm from "@/components/SearchForm/SearchForm"
 import SectionWrapper from "@/components/SectionWrapper/SectionWrapper"
-import { Box, Button, Stack, Typography } from "@mui/material"
+import { Box, Button, Pagination, Stack, Typography } from "@mui/material"
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import StoreCard from "@/components/StoreCard/StoreCard";
 import Image from "next/image";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from "next/link";
 import { Metadata, ResolvingMetadata } from "next";
+import { getSearchResults } from "@/lib/api";
+import { getProductCount, getStoreCount } from "@/lib/products";
+import { getCityName } from "@/lib/citites";
+import SearchPagination from "@/components/SearchPagination/SearchPagination";
 
 type SearchParams = {
     searchParams: { [key: string]: string | undefined }
@@ -50,12 +54,24 @@ export async function generateMetadata(
   }
 }
 
-// HARDCODE
+
 const Page = async ({ searchParams }: SearchParams) => {
-    const { query, city } = await searchParams
-    
-    const products = 9
-    const stores = 3
+    const { query, city, page } = await searchParams
+
+    console.log(query)
+    console.log(city)
+    console.log(page)
+    const cityCode = Number(city)
+    const pageNumber = Number(page)
+
+    let products: SearchResults | null = null
+    let error: string | null = null
+    try {
+        if(query && city) products = await getSearchResults(query, cityCode, pageNumber || 0)
+        else throw new Error("Използвайте търсачката по-горе, за да намерите продукти.")
+    } catch(err: any) {
+        error = err?.message || "Нещо се обърка. Моля опитайте отново."
+    }
 
     return (
         <>
@@ -106,26 +122,30 @@ const Page = async ({ searchParams }: SearchParams) => {
                 }
             }}>
                 {
-                    !query &&
+                    error &&
                     <Stack gap={1} alignItems={"center"}>
                         <ErrorOutlineOutlinedIcon sx={{ color: "title.main", width: "3rem", height: "3rem" }} />
-                        <Typography variant="h5" color="title">Въведете търсене</Typography>
-                        <Typography variant="body1" color="neutral">Използвайте търсачката по-горе, за да намерите продукти.</Typography>
+                        <Typography variant="h5" color="title">Нещо се обърка!</Typography>
+                        <Typography variant="body1" color="neutral">{error}</Typography>
                     </Stack>
                 }
                 {
-                    query &&
-                    <Stack gap={3}>
-                        <Stack gap={1}>
-                            <Typography variant="h4" color="title" fontWeight={600}>Резултати за "{query}" в {city}</Typography>
-                            <Typography variant="body1" color="neutral">Намерени {products} продукта {stores} в магазина.</Typography>
+                    products &&
+                    <Stack gap={8}>
+                        <Stack gap={3}>
+                            <Stack gap={1}>
+                                <Typography variant="h4" color="title" fontWeight={600}>Резултати за "{query}" в {getCityName(cityCode)}</Typography>
+                                <Typography variant="body1" color="neutral">Намерени {getProductCount(products)} продукта в {getStoreCount(products)} магазина.</Typography>
+                            </Stack>
+
+                            <Stack gap={8}>
+                                <StoreCard products={products.items.Kaufland} store="kaufland" />
+                                <StoreCard products={products.items.Billa} store="billa" />
+                                <StoreCard products={products.items.Lidl} store="lidl" />
+                            </Stack>
                         </Stack>
 
-                        <Stack gap={8}>
-                            <StoreCard store="kaufland" />
-                            <StoreCard store="billa" />
-                            <StoreCard store="lidl" />
-                        </Stack>
+                        <SearchPagination count={products.page_size} />
                     </Stack>
                 }
             </SectionWrapper>

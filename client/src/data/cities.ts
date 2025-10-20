@@ -1,0 +1,43 @@
+export const cities: {
+    code: number,
+    city: string
+}[] = [
+  { code: 61707, city: "Разград" },
+  { code: 73626, city: "Търговище" },
+  { code: 67653, city: "Смолян" },
+  { code: 10135, city: "Варна" },
+  { code: 68134, city: "София" },
+  { code: 55155, city: "Пазарджик" },
+  { code: 21539, city: "Добрич" },
+  { code: 77181, city: "Харманли" },
+  { code: 65766, city: "Свищов" },
+  { code: 63427, city: "Русе" },
+  { code: 56722, city: "Плевен" },
+  { code: 62089, city: "Раковски" },
+  { code: 68850, city: "Стара Загора" },
+  { code: 35167, city: "Казанлък" },
+  { code: 702, city: "Асеновград" },
+  { code: 56784, city: "Пловдив" },
+  { code: 2676, city: "Банско" },
+  { code: 14204, city: "Габрово" },
+  { code: 4279, city: "Благоевград" },
+  { code: 61813, city: "Разлог" },
+  { code: 65334, city: "Сандански" },
+  { code: 12259, city: "Враца" },
+  { code: 55871, city: "Перник" },
+  { code: 67800, city: "Созопол" },
+  { code: 57491, city: "Поморие" },
+  { code: 61056, city: "Равда" },
+  { code: 7079, city: "Бургас" },
+  { code: 48619, city: "Царево" },
+  { code: 2508, city: "Балчик" },
+  { code: 87374, city: "Ямбол" },
+  { code: 83510, city: "Шумен" },
+  { code: 66425, city: "Силистра" },
+  { code: 67338, city: "Сливен" },
+  { code: 40909, city: "Кърджали" },
+  { code: 68789, city: "Дупница" },
+  { code: 41112, city: "Кюстендил" }
+];
+
+cities.sort((a, b) => a.city.localeCompare(b.city, 'bg'))

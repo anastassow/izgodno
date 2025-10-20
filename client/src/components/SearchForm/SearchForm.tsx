@@ -1,6 +1,7 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, Stack, TextField } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
-// HARDCODE
+import { cities } from "@/data/cities";
+
 const SearchForm = ({ search, city }: { search: string | undefined, city: string | undefined }) => {
     return (
         <form action={'/search'}>
@@ -18,9 +19,12 @@ const SearchForm = ({ search, city }: { search: string | undefined, city: string
                 />
                 <FormControl variant="outlined" sx={{ width: { md: "10rem" } }}>
                     <InputLabel id="cityLabel">Град</InputLabel>
-                    <Select labelId="cityLabel" label="Град" name="city" defaultValue={city || ""}>
-                        <MenuItem value="София">София</MenuItem>
-                        <MenuItem value="Бургас">Бургас</MenuItem>
+                    <Select labelId="cityLabel" label="Град" name="city" defaultValue={city || "702"}>
+                        {
+                            cities.map((city, i) => (
+                                <MenuItem key={i} value={city.code}>{city.city}</MenuItem>
+                            ))
+                        }
                     </Select>
                 </FormControl>
                 <Button type="submit" variant="contained" color="primary">Търсене</Button>
