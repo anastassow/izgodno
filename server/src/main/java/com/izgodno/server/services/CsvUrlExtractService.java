@@ -11,7 +11,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service; 
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
+import com.izgodno.server.exeptions.ErrorExeption; 
 
 @Service
 public class CsvUrlExtractService {
@@ -25,6 +28,7 @@ public class CsvUrlExtractService {
      * @param date_now
      * @param account
      * @return String representing the uri for the csv url based on date and account number (food company)
+     * @exception ErrorExeption Throws a custom error exeption if something fails in the url development
      */
     public String csvUrl(LocalDate date_now, Integer account) {
 
@@ -50,8 +54,7 @@ public class CsvUrlExtractService {
             String csvPath = link.attr("href");
             return csvPath;
         } catch (Exception e) {
-            System.out.println("There is an error with the uri"); // custom exeption later
-            return null;
+            throw new ErrorExeption("There is an error with the uri", HttpStatus.CONFLICT);
         }
 
     }
