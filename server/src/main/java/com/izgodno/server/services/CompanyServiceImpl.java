@@ -25,6 +25,12 @@ import com.izgodno.server.repositories.BillaRepository;
 import com.izgodno.server.repositories.KauflandRepository;
 import com.izgodno.server.repositories.LidlRepository;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import org.json.JSONObject;
+
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -38,14 +44,19 @@ public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private LidlRepository lidlRepository;
 
-    @Value("${fastapi.microcervice.url}")
-    private String microserviceUrl;
+    @Value("${fastapi.microcervice.url.filter}")
+    private String microserviceUrlFilter;
+
+    @Value("${fastapi.microcervice.url.keyword}")
+    private String microserviceUrlKeyword;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    public ProductsResponse searchProducts(String keyword, Integer cityCode, int page, int size) {
+    public ProductsResponse searchProducts(String keywordFromUser, Integer cityCode, int page, int size) {
         PageRequest pageable = PageRequest.of(page, size);
+
+        String keyword = wordTypoFix(keywordFromUser);
 
         List<Kaufland> kauflandProducts = kauflandRepository.searchByKeywordAndCity(keyword, cityCode, pageable).getContent();
         List<Lidl> lidlProducts = lidlRepository.searchByKeywordAndCity(keyword, cityCode, pageable).getContent();
@@ -88,7 +99,7 @@ public class CompanyServiceImpl implements CompanyService {
         microRequest.put("items", itemsForMicroservice);
 
         MicroserviceResponse microResponse = restTemplate.postForObject(
-                "http://127.0.0.1:9000/filter/", microRequest, MicroserviceResponse.class
+                microserviceUrlFilter, microRequest, MicroserviceResponse.class
         );
 
         if (microResponse == null || microResponse.getItems() == null) {
@@ -138,4 +149,31 @@ public class CompanyServiceImpl implements CompanyService {
                 mappedItems
         );
     }
+
+    private String wordTypoFix(String keyword) {
+        try {
+            String url = microserviceUrlKeyword + "?keyword=" + keyword;
+
+            URI uri = new URI(url);
+
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(uri)
+                    .header("Content-Type", "application/json")
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            JSONObject json = new JSONObject(response.body());
+            return json.getString("corrected_keyword"); 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+}
+
+
+    
 }
