@@ -25,7 +25,7 @@ class RequestBody(BaseModel):
     page_size: int
 
 
-@app.post("/filter/")
+@app.post("/ml/filter/")
 async def filter_items(body: RequestBody):
     keyword = body.keyword
     companies_items = body.items
@@ -71,3 +71,35 @@ For example: ["Хляб Добруджа", "Бял хляб с квас"]
         "page_size": body.page_size,
         "items": result
     }
+
+@app.get("/ml/")
+async def keyword_checker(keyword: str):
+
+    prompt = f"""
+The word is: "{keyword}".
+This word is in Bulgarian and may contain a typo or misspelling.
+
+Your task:
+- If the word is misspelled, return the corrected Bulgarian word.
+- If the word is already correct, return it unchanged.
+- Do not translate, explain, or add anything else.
+- Return only the single corrected word, with no punctuation or extra symbols.
+"""
+    
+    try:
+        response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0
+            )
+        
+        corrected_keyword = response.choices[0].message.content.strip()
+
+        return {
+            "corrected_keyword": corrected_keyword
+        }
+
+    except Exception as e:
+        return {
+            "error": str(e)
+        }
