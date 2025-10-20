@@ -11,14 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.opencsv.CSVReader;
 
-/**
- * This is a class that have only a one method saving the data from the csv to the db
- * 
- * @param csvUrl this is the url for the csv get from the kolkostruva site
- * @returns nothing it if executed with no problems
- * @throws String with a message for a row skiped if there is a problem with it
- */
-
 @Service
 public class CsvSaveService {
     private static final int BATCH_SIZE = 1000;
