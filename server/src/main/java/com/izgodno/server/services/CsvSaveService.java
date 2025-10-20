@@ -18,7 +18,7 @@ public class CsvSaveService {
     @Autowired
     private DataSource dataSource;
 
-    public void importCsvFromUrl(String csvUrl) throws Exception {
+    public void importCsvFromUrl(String csvUrl, String sqlQuery) throws Exception {
         URL url = new URL(csvUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -28,8 +28,8 @@ public class CsvSaveService {
             Connection db = dataSource.getConnection()) {
 
             db.setAutoCommit(false);
-            String sql = "INSERT INTO billa (city_code, place, product_name, retail_price, promotion_price) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement stmt = db.prepareStatement(sql);
+            // String sql = "INSERT INTO billa (city_code, place, product_name, retail_price, promotion_price) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement stmt = db.prepareStatement(sqlQuery);
 
             String[] parts;
             int count = 0;
@@ -62,7 +62,7 @@ public class CsvSaveService {
             stmt.executeBatch();
             db.commit();
             // testing
-            // System.out.println("Imported " + count + " records into PostgreSQL!"); 
+            System.out.println("Imported " + count + " records into PostgreSQL!"); 
         }
     }
 
