@@ -11,6 +11,6 @@ import com.izgodno.server.entities.Billa;
 
 @Repository
 public interface BillaRepository extends JpaRepository<Billa, Long>{  
-    @Query("SELECT k FROM Billa k WHERE k.city_code = :cityCode AND LOWER(k.product_name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    @Query("SELECT k FROM Billa k WHERE k.city_code = :cityCode AND LOWER(k.product_name) LIKE LOWER(CONCAT('%', :keyword, '%')) AND k.promotion_price <> 0.0")
     Page<Billa> searchByKeywordAndCity(@Param("keyword") String keyword, @Param("cityCode") Integer cityCode, Pageable pageable);
 }

@@ -11,6 +11,6 @@ import com.izgodno.server.entities.Kaufland;
 
 @Repository
 public interface KauflandRepository extends JpaRepository<Kaufland, Long>{
-    @Query("SELECT k FROM Kaufland k WHERE k.city_code = :cityCode AND LOWER(k.product_name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    @Query("SELECT k FROM Kaufland k WHERE k.city_code = :cityCode AND LOWER(k.product_name) LIKE LOWER(CONCAT('%', :keyword, '%')) AND k.promotion_price <> 0.0")
     Page<Kaufland> searchByKeywordAndCity(@Param("keyword") String keyword, @Param("cityCode") Integer cityCode, Pageable pageable);
 }

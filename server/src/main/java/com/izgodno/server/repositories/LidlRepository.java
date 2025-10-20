@@ -12,6 +12,6 @@ import com.izgodno.server.entities.Lidl;
 
 @Repository
 public interface LidlRepository extends JpaRepository<Lidl, Long>{
-    @Query("SELECT k FROM Lidl k WHERE k.city_code = :cityCode AND LOWER(k.product_name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    @Query("SELECT k FROM Lidl k WHERE k.city_code = :cityCode AND LOWER(k.product_name) LIKE LOWER(CONCAT('%', :keyword, '%')) AND k.promotion_price <> 0.0")
     Page<Lidl> searchByKeywordAndCity(@Param("keyword") String keyword, @Param("cityCode") Integer cityCode, Pageable pageable);
 }
