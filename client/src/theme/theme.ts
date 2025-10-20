@@ -56,7 +56,7 @@ const theme = createTheme({
         },
         containedPrimary: {
           "&:hover": {
-            backgroundColor: "hsla(158, 78%, 60%, 1.00)"
+            backgroundColor: "#3c3e55ff"
           }
         }
       }
