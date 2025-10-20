@@ -19,7 +19,7 @@ const SearchPagination = ({ count, page }: { count: number, page: number }) => {
         <>
             <Pagination
                 onChange={handleChange}
-                page={page}
+                page={page + 1}
                 size="large"
                 sx={{ mx: "auto", display: count <= 1 ? "none" : "block" }}
                 count={count} 
